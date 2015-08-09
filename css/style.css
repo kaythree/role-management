@@ -464,6 +464,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', end
     fill: #fff;    
     stroke: #CADEFA;    
     stroke-width: 2px; 
+    cursor: pointer;
 } 
 .node {    
     font: 14px sans-serif; 
@@ -474,7 +475,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', end
     stroke: #ccc;    
     stroke-width: 2px; 
 }
-
+.node .text-color{
+   font: 14px sans-serif; 
+   color: #FFFFFF;
+}
+.hide-tree{
+  display: none;
+}
 
 /* 
 ================================
@@ -580,6 +587,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', end
   float: right;
 }
 
+#details-grid .k-current-page .k-pager-nav{
+  top : 5px;
+}
+
+#details-grid .k-select .k-icon{
+  position: relative;
+  right: 5px;
+  top: 5px;
+}
 
 
 

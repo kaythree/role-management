@@ -23,6 +23,9 @@ grid.controller("UserController" , function($scope){
 			$scope.blueLayer = false;
 		}
 	}
+	$scope.expandTree =  function(obj){
+		$(".hide-tree").show('slow');
+	}
 	$scope.showAddUserBlock = function(){
 		$scope.showAddUser = !$scope.showAddUser;
 		if($scope.showAddUser){
@@ -82,12 +85,48 @@ grid.controller("UserController" , function($scope){
 		//alert("hi");
 		$scope.groupDropdownBox = !$scope.groupDropdownBox;
 	}
+	$scope.expandNodes = function(){
+		var width = 450; 
+		var height = 250; 
+		var cluster = d3.layout.cluster()
+		   .size([height, width-250]); 
+		var diagonal = d3.svg.diagonal()    
+		   .projection (function(d) { return [d.y, d.x];}); 
+		var svg = d3.select(".node-circle-view").append("svg")    
+		   .attr("width",width)    
+		   .attr("height",height)    
+		   .append("g")    
+		   .attr("transform","translate(100,0)"); 
+		d3.json("nodes.json", function(error, root){    
+		   var nodes = cluster.nodes(root);    
+		   var links = cluster.links(nodes);    
+		   var link = svg.selectAll(".link")       
+		      .data(links)       
+		      .enter().append("path")       
+		      .attr("class","link hide-tree")       
+		      .attr("d", diagonal);     
+		   var node = svg.selectAll(".node")       
+		      .data(nodes)       
+		      .enter().append("g")   
+		      .attr("class", function(d) { return d.children ? "node" : "node hide-tree"; } )    
+		      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });    
+		   node.append("circle")       
+		      .attr("r", 10)
+		      .attr("ng-click", function(d) { return d.children ? "expandTree($event)" : ""; } ) ; 
+		   node.append("text") 
+		      .attr("class", "text-color")
+		      .attr("dx", function(d) { return d.children ? -12 : 15; })       
+		      .attr("dy", 5)       
+		      .style("text-anchor", function(d) { return d.children ? "end" : "start"; })      
+		      .text( function(d){ return d.name;}); 
+		});
+	}
 });
 
 grid.controller("GridCtrl", function($scope){
 	$scope.checkboxCode = "<input type='checkbox' class='chk-box' disabled checked>";
 	$scope.mainGridOptions = {
-		dataSource: [ { users: "User 1",
+		dataSource: [ { users: "JMadi1",
 					 roles: "Role1 , Role 2, Role 3, Role 4"
 					},
 					{ users: "",
