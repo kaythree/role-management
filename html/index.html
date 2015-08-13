@@ -126,7 +126,7 @@
 			      .data(nodes)       
 			      .enter().append("g")   
 			      .attr("class", function(d) { return d.children ? "node" : "node hide-tree"; } )    
-			      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });    
+			      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; }); 
 			   node.append("circle")       
 			      .attr("r", 10)
 			      .attr("ng-click", function(d) { return d.children ? "expandTree($event)" : ""; } ) ; 
@@ -134,8 +134,12 @@
 			      .attr("class", "text-color")
 			      .attr("dx", function(d) { return d.children ? -12 : 15; })       
 			      .attr("dy", 5)       
-			      .style("text-anchor", function(d) { return d.children ? "end" : "start"; })      
+			      .style("text-anchor", function(d) { return d.children ? "end" : "start"; })  
+			      .attr("fill","#ffffff") 
 			      .text( function(d){ return d.name;}); 
+			   node.append("i")
+			      .attr("class","fa fa-cogs")
+			      .text("&nbsp");
 			}); 
 		</script>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
