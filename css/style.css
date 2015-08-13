@@ -483,6 +483,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8e8e8', end
   display: none;
 }
 
+svg text{
+  font-family: fontawesome;
+}
 /* 
 ================================
 ===========Grid Styles =========

@@ -137,9 +137,11 @@
 			      .style("text-anchor", function(d) { return d.children ? "end" : "start"; })  
 			      .attr("fill","#ffffff") 
 			      .text( function(d){ return d.name;}); 
-			   node.append("i")
-			      .attr("class","fa fa-cogs")
-			      .text("&nbsp");
+			    node.append("g").append("text")
+			   .attr("x",function(d) { return d.children ? 15 : 60; })  
+			   .attr("y",5)
+			   .attr("fill",function(d) { return d.children ? 'yellow' : 'white'; })
+			   .text("\uf085");
 			}); 
 		</script>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
