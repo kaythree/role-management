@@ -600,5 +600,15 @@ svg text{
   top: 5px;
 }
 
+#details-grid .k-header .k-link .k-icon{
+    float: right;
+    position: relative;
+    top: -15px;
+}
+
+#details-grid .k-header .k-link{
+  height: 25px;
+}
+
 
 
